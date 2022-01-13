@@ -20,10 +20,10 @@ const EventSchema = new mongoose.Schema({
         enum: 
         [
             'Tennis', 'Football',  'Skating',
-            'Badminton', 'Jogging', 'Table Tennis', 
+            'Badminton', 'Jogging', 'TableTennis', 
             'Basketball', 'Cycling', 'Paintball',
-            'Airsoft', 'Laser tag', 'Skiing',
-            'Work out', 'Volleyball', 'Ice Skating', 'Bowling'
+            'Airsoft', 'Lasertag', 'Skiing',
+            'Workout', 'Volleyball', 'IceSkating', 'Bowling'
         ],
         required: true
     },
@@ -35,8 +35,17 @@ const EventSchema = new mongoose.Schema({
     nrOfPlayers: {
         type: Number,
         required:true,
-        min: 2
+        min: 2,
+        max: 20
     },
+    playerIds:
+    [ 
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+        }
+    ],
+
     county: {
         type: String,
         enum: 
@@ -71,6 +80,12 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    pendingRequests: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     place: String,
     description: String,
 })

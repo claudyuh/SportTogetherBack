@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const ExpressError = require('./utils/ExpressError');
 const userRoutes = require('./routes/users');
 const eventRoutes = require('./routes/events');
-const bodyParser = require('body-parser');
+const weatherRoutes = require('./routes/weather')
 
 // Uses
 const app = express();
@@ -41,6 +41,8 @@ mongoose.connect(mongoCloud, {
 app.use('/', userRoutes)
 
 app.use('/', eventRoutes)
+
+app.use('/', weatherRoutes)
 
 // error handler
 

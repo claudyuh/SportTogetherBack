@@ -125,6 +125,13 @@ const UserSchema = new mongoose.Schema({
             ref: 'Event'
         }
     ],
+    
+    sentJoinRequestsEventsIds: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Event'
+        }
+    ],
     matchesPlayed:{
         type: Number,
         default: 0

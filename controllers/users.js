@@ -11,9 +11,13 @@ exports.createUser = async (req, res, next) => {
 
     const {email, username, firstName, lastName, gender, county, city, password, confirmPw} = req.body
     const user = await User.findOne({email: req.body.email})
+    const usernameCheck = await User.findOne({username: req.body.username})
     // needs checks, if user exists throw error, if pw and confirmpw are the same also validations
     if(user){
         return res.status(409).json({error: "Email already exists, please try again with a valid email"});
+    }
+    if(usernameCheck){
+        return res.status(409).json({error: "Username already exists"});
     }
     if(password !== confirmPw){
         return res.status(409).json({error: 'Password and confirm password fields should match!'})
